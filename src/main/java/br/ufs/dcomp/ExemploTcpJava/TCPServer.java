@@ -19,10 +19,11 @@ public class TCPServer{
             Socket sock = ss.accept(); // Operação bloqueante (aguardando pedido de conexão)
             System.out.println("[OK] ]");
             
+            System.out.println("[ Chat iniciado ]");
+            
             InputStream is = sock.getInputStream(); //Canal de entrada de dados
             OutputStream os = sock.getOutputStream(); //Canal de saída de dados
-            byte[] bufin; // buffer de recepção]
-            byte[] bufout;
+            byte[] bufin, bufout; // buffers de envio e recepção
             String msg;
             Scanner sc = new Scanner(System.in);
             
@@ -39,6 +40,7 @@ public class TCPServer{
                 /*Fim do receive*/
                 
                 /*Início do send*/
+                System.out.print("Digite mensagem: ");
                 msg = sc.nextLine();
                 bufout = msg.getBytes(); // Obtendo a respresntação em bytes da mensagem
     

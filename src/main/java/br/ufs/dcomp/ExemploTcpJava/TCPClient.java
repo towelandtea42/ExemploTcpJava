@@ -10,19 +10,31 @@ import java.util.Scanner;
 public class TCPClient{
     public static void main(String[] args){
         try {
+            
+            String ip, msg;
+            int porta;
+            Scanner sc = new Scanner(System.in);
+            byte[] bufin, bufout; // buffers de envio e recepção
+            
+            
+            System.out.print("Digite o IP: ");
+            ip = sc.next();
+            System.out.print("Digite a porta: ");
+            porta = sc.nextInt();
             System.out.print("[ Conectando com o Servidor TCP    ..................  ");
-            Socket sock = new Socket("127.0.0.1", 3300);
+            Socket sock = new Socket(ip, porta);
             System.out.println("[OK] ]");
+            
+            System.out.println("[ Chat iniciado ]");
+            
             
             InputStream is = sock.getInputStream(); // Canal de entrada de dados
             OutputStream os = sock.getOutputStream(); // Canal de saída de dados
-            String msg;
-            Scanner sc = new Scanner(System.in);
-            byte[] bufout;
-            byte[] bufin;
+            msg = sc.nextLine();
             
             while(true) {
                 /*Início do send*/
+                System.out.print("Digite mensagem: ");
                 msg = sc.nextLine();
                 bufout = msg.getBytes(); // Obtendo a respresntação em bytes da mensagem
     
